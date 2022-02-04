@@ -314,7 +314,7 @@ function App() {
       <div className="flex">
         <div className="col pr-1 w-[290px]">
           <MessageBlock data={paddedInput} base={base} clock={clock%115} chunksLoop={chunksLoop(clock)}/>
-          <Explainer clock={clock%115} input={input} inputBase={inputBase} chunksCount={chunksCount} />
+          <Explainer clock={clock%115} masterClock={clock} input={input} inputBase={inputBase} chunksCount={chunksCount} lastClock={lastClock(clock)} />
         </div>
         <div className="col pr-">
             <MessageSchedule data={wView} base={base} labels={'w'} clock={clock%115}/>

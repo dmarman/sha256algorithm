@@ -7,7 +7,7 @@ function displayHex(value) {
 }
 
 function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, lastClock }) {
-  let execute = masterClock === lastClock();
+  let execute = clock%113 === 0;
 
   let a = letters[0];
   let b = letters[1];
