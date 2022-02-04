@@ -18,6 +18,7 @@ import ButtonClockFast from "./components/ButtonClockFast";
 import ButtonClockFinish from "./components/ButtonClockFinish";
 import ButtonAutoClock from "./components/ButtonAutoClock";
 import BeforeLetters from "./components/BeforeLetters";
+import Explainer from "./components/Explainer";
 
 function App() {
   const [result, setResult] = useState('');
@@ -311,8 +312,9 @@ function App() {
       </div>
 
       <div className="flex">
-        <div className="col pr-1">
-            <MessageBlock data={paddedInput} base={base} clock={clock%115} chunksLoop={chunksLoop(clock)}/>
+        <div className="col pr-1 w-[290px]">
+          <MessageBlock data={paddedInput} base={base} clock={clock%115} chunksLoop={chunksLoop(clock)}/>
+          <Explainer clock={clock%115} input={input} inputBase={inputBase} chunksCount={chunksCount} />
         </div>
         <div className="col pr-">
             <MessageSchedule data={wView} base={base} labels={'w'} clock={clock%115}/>
@@ -324,12 +326,14 @@ function App() {
               <MessageScheduleCalculation letters={letters} clock={clock%115} wView={wView} base={base} k={k}/>
               <CompressionCalculation letters={lettersBefore} clock={clock%115} wView={wView} base={base} k={k} flash={flash} lastClock={lastClock} hsBefore={hsBefore} hs={hs} masterClock={clock} />
             </div>
-            <div className="flex mt-12">
-              <div className="mx-2 hidden">
-                <h2 className='font-bold my-1 text-indigo-200'>Sha256</h2>
-                <div>{result}</div>
-                <div>{sha256(input)}</div>
-              </div>
+            <div className="flex mt-4">
+              { clock === lastClock(clock) &&
+                <div className="mx-2">
+                  <h2 className='font-bold my-1 text-indigo-200'>Sha256</h2>
+                  <div>{result}</div>
+                  { false && <div>{sha256(input)}</div> }
+                </div>
+              }
             </div>
           </div>
         </div>

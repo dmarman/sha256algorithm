@@ -55,6 +55,16 @@ export function padding(input, base = 'text') {
   return appendOneBit(input) + L64.padStart(K + 64, '0')
 }
 
+export function paddingExplained(input, base = 'text') {
+  if(base === 'text') input = stringToBinary(input);
+  let L = input.length;
+  let K = calculateK(L);
+  let L64 = return64Bit(decimalToBinary(L));
+  let result = appendOneBit(input) + L64.padStart(K + 64, '0');
+
+  return { input, L, LBinary: decimalToBinary(L), K, L64, result, inputAppended: appendOneBit(input) };
+}
+
 export function chunkString(str, length = 512) {
   return str.match(new RegExp('.{1,' + length + '}', 'g')) || [];
 }
@@ -67,4 +77,19 @@ export function rotateRight(value, r) { // https://github.com/dfrankland/bitwise
     (value >>> rotation) |
     ((value << (bitWidth - rotation)) & bitMask)
   ); // Change from signed to unsigned
+}
+
+export function ordinal(i) {
+  let j = i % 10,
+    k = i % 100;
+  if (j === 1 && k !== 11) {
+    return i + "st";
+  }
+  if (j === 2 && k !== 12) {
+    return i + "nd";
+  }
+  if (j === 3 && k !== 13) {
+    return i + "rd";
+  }
+  return i + "th";
 }
