@@ -113,9 +113,9 @@ function App() {
   }
 
   function onClockFast() {
-    if(clock + 10 > lastClock()) return;
-    setClock(clock + 10);
-    let result = shaStepped(input, firstLoop(clock + 9), secondLoop(clock + 9), chunksLoop(clock));
+    if(clock + 20 > lastClock()) return;
+    setClock(clock + 20);
+    let result = shaStepped(input, firstLoop(clock + 19), secondLoop(clock + 19), chunksLoop(clock));
 
     setWView(result.w);
     setResult(result.hash);
@@ -126,10 +126,10 @@ function App() {
   }
 
   function onClockBackFast() {
-    if(clock < 10) return;
+    if(clock < 20) return;
 
-    if(clock < lastClock()) setClock(clock - 10);
-    let result = shaStepped(input, firstLoop(clock - 11), secondLoop(clock - 11), chunksLoop(clock));
+    if(clock < lastClock()) setClock(clock - 20);
+    let result = shaStepped(input, firstLoop(clock - 21), secondLoop(clock - 21), chunksLoop(clock));
 
     setWView(result.w);
     setResult(result.hash);
@@ -158,13 +158,13 @@ function App() {
     let step = clock%115;
 
     if(step + 16 < 64) return 15 + step;
-
     return 63
   }
 
   function secondLoop(clock) {
     let step = clock%115;
     if(step >= 49 && step < 113) return step - 49;
+
     if(step >= 113) return 63;
     return 0
   }
@@ -214,7 +214,13 @@ function App() {
 
   function lastClock() {
     if(chunksCount === 1) return 113;
-    return 114*chunksCount;
+
+    return 114*chunksCount + chunksCount - 2; // Don't touch this f*** thing.
+  }
+
+  function cycleClock() {
+    if(chunksCount === 1) return clock%114;
+    return clock%115;
   }
 
   function shaStepped(message, firstLoop, secondLoop, chunksLoop) {
@@ -225,7 +231,7 @@ function App() {
     let lettersBefore = [];
     let input = padding(message, inputBase);
     let chunks = chunkString(input);
-
+console.log(clock, firstLoop, secondLoop, chunksLoop)
     setChunksCount(chunks.length);
 
     for(let n = 0; n < chunksLoop; n++) {
@@ -313,33 +319,25 @@ function App() {
 
       <div className="flex">
         <div className="col pr-1 w-[290px]">
-          <MessageBlock data={paddedInput} base={base} clock={clock%115} chunksLoop={chunksLoop(clock)}/>
-          <Explainer clock={clock%115} masterClock={clock} input={input} inputBase={inputBase} chunksCount={chunksCount} lastClock={lastClock(clock)} />
+          <MessageBlock data={paddedInput} base={base} clock={cycleClock()} chunksLoop={chunksLoop(clock)}/>
+          <Explainer clock={cycleClock()} masterClock={clock} input={input} inputBase={inputBase} chunksCount={chunksCount} lastClock={lastClock(clock)} />
         </div>
         <div className="col pr-">
-            <MessageSchedule data={wView} base={base} labels={'w'} clock={clock%115}/>
+            <MessageSchedule data={wView} base={base} labels={'w'} clock={cycleClock()}/>
         </div>
         <div className="col pr-4">
           <div className="pr-4">
             <div>
-              <Hs hs={hsBefore} base={base} clock={clock%115} />
-              <MessageScheduleCalculation letters={letters} clock={clock%115} wView={wView} base={base} k={k}/>
-              <CompressionCalculation letters={lettersBefore} clock={clock%115} wView={wView} base={base} k={k} flash={flash} lastClock={lastClock} hsBefore={hsBefore} hs={hs} masterClock={clock} />
+              <Hs hs={hsBefore} base={base} clock={cycleClock()} />
+              <MessageScheduleCalculation letters={letters} clock={cycleClock()} wView={wView} base={base} k={k}/>
+              <CompressionCalculation letters={lettersBefore} clock={cycleClock()} wView={wView} base={base} k={k} flash={flash} lastClock={lastClock} hsBefore={hsBefore} hs={hs} masterClock={clock} result={result} />
             </div>
-            <div className="flex mt-4">
-              { clock === lastClock(clock) &&
-                <div className="mx-2">
-                  <h2 className='font-bold my-1 text-indigo-200'>Sha256</h2>
-                  <div>{result}</div>
-                  { false && <div>{sha256(input)}</div> }
-                </div>
-              }
-            </div>
+
           </div>
         </div>
         <div className="col">
-          <BeforeLetters letters={lettersBefore} base={base} clock={clock%115} labels={['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', ]} />
-          <Constants k={k} clock={clock%115}/>
+          <BeforeLetters letters={lettersBefore} base={base} clock={cycleClock()} labels={['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', ]} />
+          <Constants k={k} clock={cycleClock()}/>
         </div>
       </div>
     </div>

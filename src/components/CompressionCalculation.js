@@ -5,7 +5,7 @@ import UpdateLetters from "../components/UpdateLetters";
 import Choice from "../components/Choice";
 import SigmaUpper from "./SigmaUpper";
 
-function CompressionCalculation({ letters, clock, wView, base, k, lastClock, hsBefore, hs, masterClock }) {
+function CompressionCalculation({ letters, clock, wView, base, k, lastClock, hsBefore, hs, masterClock, result }) {
   let execute = masterClock === lastClock();
 
   function active(clock) {
@@ -64,7 +64,7 @@ function CompressionCalculation({ letters, clock, wView, base, k, lastClock, hsB
             <Majority letters={letters} base={base} />
             <Temp2 w={wView} letters={letters} base={base} />
 
-            <UpdateLetters w={wView} letters={letters} base={base} clock={clock} k={k} hsBefore={hsBefore} hs={hs} lastClock={lastClock} masterClock={masterClock} />
+            <UpdateLetters w={wView} letters={letters} base={base} clock={clock} k={k} hsBefore={hsBefore} hs={hs} lastClock={lastClock} masterClock={masterClock} result={result}/>
           </div>
         </div>
       }

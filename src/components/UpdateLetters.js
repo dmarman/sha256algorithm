@@ -1,12 +1,13 @@
 import { decimalToBinary } from '../classes/utils'
 import { rotateRight } from '../classes/utils'
 import ReactTooltip from 'react-tooltip';
+import {sha256} from "../classes/sha";
 
 function displayHex(value) {
   return Number(value >>> 0).toString(16).padStart(8, '0').match(new RegExp('.{1,' + 2 + '}', 'g')).join(' ');
 }
 
-function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, lastClock }) {
+function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, lastClock, result }) {
   let execute = clock%113 === 0;
 
   let a = letters[0];
@@ -165,6 +166,12 @@ function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, 
           </div>
         </div>
       </div>
+      { execute &&
+        <div className="mt-4">
+          <h2 className='font-bold my-1 text-indigo-200'>Sha256</h2>
+          <div>{ result }</div>
+        </div>
+      }
     </div>
   );
 }

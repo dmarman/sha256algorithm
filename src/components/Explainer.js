@@ -24,24 +24,25 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
       }
       { (clock >= 2 && clock <= 49) &&
       <div>
+        <p className="pb-2">1. Calculate:</p>
         <p className="pb-2">
-          1. Calculate the word <b className="text-white">w{ clock + 14 }</b> by adding <br/> <b className="text-blue-500">w{ clock - 2 }</b> + σ0 + <b className="text-yellow-500">w{ clock + 7 }</b> + σ1.
+          <b className="text-white">w{ clock + 14 }</b> = <b className="text-blue-500">w{ clock - 2 }</b> + σ0 + <b className="text-yellow-500">w{ clock + 7 }</b> + σ1
         </p>
 
-        <p className="pb-2">Where</p>
-        <p className="pb-2">
+        <p className="pb-2">where</p>
+        <div className="pb-2">
           <div className="flex">
             <div className="mr-2">σ0 =</div>
             <div>(<b className="text-red-500">w{ clock - 1 }</b> rightrotate  7) xor <br/>(<b className="text-red-500">w{ clock - 1 }</b> rightrotate 18) xor <br/>(<b className="text-red-500">w{ clock - 1 }</b> rightshift  3)</div>
           </div>
-        </p>
+        </div>
         <p className="pb-2">and</p>
-        <p className="pb-2">
+        <div className="pb-2">
           <div className="flex">
             <div className="mr-2">σ1 =</div>
             <div>(<b className="text-green-500">w{ clock + 12 }</b> rightrotate  7) xor <br/>(<b className="text-green-500">w{ clock + 12 }</b> rightrotate 18) xor <br/>(<b className="text-green-500">w{ clock + 12 }</b> rightshift  3)</div>
           </div>
-        </p>
+        </div>
       </div>
       }
       { clock === 50 &&
@@ -57,7 +58,7 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
           <p><span className="text-pink-500">  a</span> = <span className="text-green-500">h0</span></p>
           <p><span className="text-lime-500">  b</span> = <span className="text-green-500">h1</span></p>
           <p><span className="text-orange-500">c</span> = <span className="text-green-500">h2</span></p>
-          <p><span className="">  d</span> = <span className="text-green-500">h3</span></p>
+          <p><span className=""> d</span> = <span className="text-green-500">h3</span></p>
           <p><span className="text-green-500"> e</span> = <span className="text-green-500">h4</span></p>
           <p><span className="text-red-500">   f</span> = <span className="text-green-500">h5</span></p>
           <p><span className="text-indigo-500">g</span> = <span className="text-green-500">h6</span></p>
@@ -74,30 +75,30 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
           <p><span className="">b</span> = <span className="text-fuchsia-500">a</span></p>
           <p><span className="">a</span> = <span className="">Temp1 + Temp2</span></p>
         </div>
-        <p className="pb-2">
+        <div className="pb-2">
           <p className="pb-2">Where</p>
           <p className="pb-2">Temp1 = <span className="text-purple-500">h</span> + Σ1 + Choice + <span className="text-red-500">k{ clock - 50}</span> + <span className="text-yellow-500">w{ clock - 50}</span></p>
           <p className="pb-2">Temp2 = Σ0 + Majority</p>
-          <p className="pb-2">
+          <div className="pb-2">
             <div className="flex">
               <div className="mr-2">Σ1 =</div>
               <div>(<span className="text-green-500">e</span> rightrotate  6) xor <br/>(<span className="text-green-500">e</span> rightrotate 11) xor <br/>(<span className="text-green-500">e</span> rightrotate  25)</div>
             </div>
-          </p>
+          </div>
           <p className="pb-4">Choice = (<span className="text-green-500">e</span> and  <span className="text-red-500">f</span>) xor ((not <span className="text-green-500">e</span>) and <span className="text-indigo-500">g</span>)</p>
-          <p className="pb-2">
+          <div className="pb-2">
             <div className="flex">
               <div className="mr-2">Σ0 =</div>
               <div>(<span className="text-fuchsia-500">a</span> rightrotate  2) xor <br/>(<span className="text-fuchsia-500">a</span> rightrotate 13) xor <br/>(<span className="text-fuchsia-500">a</span> rightrotate  22)</div>
             </div>
-          </p>
-          <p className="pb-2">
+          </div>
+          <div className="pb-2">
             <div className="flex">
               <div className="w-[110px]">Majority =</div>
               <div>(<span className="text-fuchsia-500">a</span> and <span className="text-lime-500">b</span>) xor (<span className="text-fuchsia-500">a</span> and <span className="text-orange-500">c</span>) xor (<span className="text-lime-500">b</span> and <span className="text-orange-500">c</span>)</div>
             </div>
-          </p>
-        </p>
+          </div>
+        </div>
       </div>
       }
       { clock > 50 && clock < lastClock &&
@@ -113,31 +114,31 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
           <p><span className="">b</span> = <span className="text-fuchsia-500">a</span></p>
           <p><span className="">a</span> = <span className="">Temp1 + Temp2</span></p>
         </div>
-        <p className="pb-2">
+        <div className="pb-2">
           <p className="pb-2">Where</p>
           <p className="pb-2">Temp1 = <span className="text-purple-500">h</span> + Σ1 + Choice + <span className="text-red-500">k{ clock - 50}</span> + <span className="text-yellow-500">w{ clock - 50}</span></p>
           <p className="pb-2">Temp2 = Σ0 + Majority</p>
-          <p className="pb-2">
+          <div className="pb-2">
             <div className="flex">
               <div className="mr-2">Σ1 =</div>
               <div>(<span className="text-green-500">e</span> rightrotate  6) xor <br/>(<span className="text-green-500">e</span> rightrotate 11) xor <br/>(<span className="text-green-500">e</span> rightrotate  25)</div>
             </div>
-          </p>
+          </div>
           <p className="pb-4">Choice = (<span className="text-green-500">e</span> and  <span className="text-red-500">f</span>) xor ((not <span className="text-green-500">e</span>) and <span className="text-indigo-500">g</span>)</p>
-          <p className="pb-2">
+          <div className="pb-2">
             <div className="flex">
               <div className="mr-2">Σ0 =</div>
               <div>(<span className="text-fuchsia-500">a</span> rightrotate  2) xor <br/>(<span className="text-fuchsia-500">a</span> rightrotate 13) xor <br/>(<span className="text-fuchsia-500">a</span> rightrotate  22)</div>
             </div>
-          </p>
-          <p className="pb-2">
+          </div>
+          <div className="pb-2">
             <div className="flex">
               <div className="w-[110px]">Majority =</div>
               <div>(<span className="text-fuchsia-500">a</span> and <span className="text-lime-500">b</span>) xor (<span className="text-fuchsia-500">a</span> and <span className="text-orange-500">c</span>) xor (<span className="text-lime-500">b</span> and <span className="text-orange-500">c</span>)</div>
             </div>
-          </p>
-        </p>
-        <p>
+          </div>
+        </div>
+        <div>
           <div><span className="text-green-500">e</span> ───►┌───────┐</div>
           <div><span className="text-red-500">f</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
           <div><span className="text-indigo-500">g</span> ───►│ Temp1 │</div>
@@ -148,8 +149,8 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
           <div><span className="text-fuchsia-500">a</span> ───►┌───────┐</div>
           <div><span className="text-lime-500">b</span> ───►│ Temp2 │</div>
           <div><span className="text-orange-500">c</span> ───►└───────┘</div>
-        </p>
-        <p className="mt-4">
+        </div>
+        <div className="mt-4">
           <div><span className="text-green-500">e</span> ───►┌───────┐</div>
           <div><span className="text-red-500">f</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
           <div><span className="text-indigo-500">g</span> ───►│ Temp1 │</div>
@@ -158,7 +159,7 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
           <div><span className="text-yellow-500">w{ clock - 50 > 9 ? clock - 50 : '0' + (clock - 50).toString() }</span> ─►└───────┘</div>
           <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ─────► Updated e</div>
           <div><span className="text-purple-500">d</span> ───►────┘</div>
-        </p>
+        </div>
       </div>
       }
 

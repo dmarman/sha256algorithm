@@ -37,8 +37,8 @@ function MessageSchedule({ data, base, labels = [], clock }) {
   return (
     <div className={`duration-500 ${clock < 1 && 'opacity-25'}`}>
       <h2 className="font-bold my-1 text-indigo-200">Message schedule</h2>
-      {base === 'bin' && data.map((word, key) =>
-        <div className={`flex ${ focusColor(key, clock) }`} key={word + key}>
+      { data.map((word, key) =>
+        <div className={`flex ${ focusColor(key, clock) }`} key={key}>
           {Array.isArray(labels) ?
             <span className="mr-2 font-bold text-green-600">{labels && labels[key]}</span> :
             <span className="mr-2 font-bold text-green-600 w-5">{labels}{key}</span>
@@ -48,21 +48,6 @@ function MessageSchedule({ data, base, labels = [], clock }) {
               decimalToBinary(word).padStart(32, '0').match(new RegExp('.{1,' + 32 + '}', 'g')).join(' ')
             }
             <span className={`pl-1`}>{ arrowDirection(key, clock) }</span>
-          </div>
-        </div>
-      )}
-
-      {base === 'hex' && data.map((word, key) =>
-        <div className="flex">
-          {Array.isArray(labels) ?
-            <span className="mr-2 font-bold text-green-600">{labels && labels[key]}</span> :
-            <span className="mr-2 font-bold text-green-600 w-5">{labels}{key}</span>
-          }
-
-          <div key={(key).toString()} className={`px-1 ${focusColor(key, clock)} ${diluteOnClockOne(key, clock)}`}>
-            {
-              Number(word).toString(16).padStart(8, '0').match(new RegExp('.{1,' + 2 + '}', 'g')).join(' ')
-            }
           </div>
         </div>
       )}
