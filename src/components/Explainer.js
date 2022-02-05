@@ -101,7 +101,7 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
         </div>
       </div>
       }
-      { clock > 50 && clock < lastClock &&
+      { clock > 50 && masterClock < lastClock &&
       <div>
         <p className="pb-2">1. <i>Update working variables</i> as:</p>
         <div className="pb-2 w-32 mx-auto">
@@ -138,32 +138,55 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
             </div>
           </div>
         </div>
-        <div>
-          <div><span className="text-green-500">e</span> ───►┌───────┐</div>
-          <div><span className="text-red-500">f</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
-          <div><span className="text-indigo-500">g</span> ───►│ Temp1 │</div>
-          <div><span className="text-purple-500">h</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
-          <div><span className="text-red-500">k{ clock - 50 > 9 ? clock - 50 : '0' + (clock - 50).toString() }</span> ─►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
-          <div><span className="text-yellow-500">w{ clock - 50 > 9 ? clock - 50 : '0' + (clock - 50).toString() }</span> ─►└───────┘</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ─────► Updated a</div>
-          <div><span className="text-fuchsia-500">a</span> ───►┌───────┐</div>
-          <div><span className="text-lime-500">b</span> ───►│ Temp2 │</div>
-          <div><span className="text-orange-500">c</span> ───►└───────┘</div>
-        </div>
-        <div className="mt-4">
-          <div><span className="text-green-500">e</span> ───►┌───────┐</div>
-          <div><span className="text-red-500">f</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
-          <div><span className="text-indigo-500">g</span> ───►│ Temp1 │</div>
-          <div><span className="text-purple-500">h</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
-          <div><span className="text-red-500">k{ clock - 50 > 9 ? clock - 50 : '0' + (clock - 50).toString() }</span> ─►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
-          <div><span className="text-yellow-500">w{ clock - 50 > 9 ? clock - 50 : '0' + (clock - 50).toString() }</span> ─►└───────┘</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ─────► Updated e</div>
-          <div><span className="text-purple-500">d</span> ───►────┘</div>
-        </div>
+
+        { clock%113 !== 0 &&
+          <div>
+            <div>
+              <div><span className="text-green-500">e</span> ───►┌───────┐</div>
+              <div><span className="text-red-500">f</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
+              <div><span className="text-indigo-500">g</span> ───►│ Temp1 │</div>
+              <div><span className="text-purple-500">h</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
+              <div><span className="text-red-500">k{ clock - 50 > 9 ? clock - 50 : '0' + (clock - 50).toString() }</span> ─►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
+              <div><span className="text-yellow-500">w{ clock - 50 > 9 ? clock - 50 : '0' + (clock - 50).toString() }</span> ─►└───────┘</div>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ─────► Updated a</div>
+              <div><span className="text-fuchsia-500">a</span> ───►┌───────┐</div>
+              <div><span className="text-lime-500">b</span> ───►│ Temp2 │</div>
+              <div><span className="text-orange-500">c</span> ───►└───────┘</div>
+            </div>
+            <div className="mt-4">
+              <div><span className="text-green-500">e</span> ───►┌───────┐</div>
+              <div><span className="text-red-500">f</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
+              <div><span className="text-indigo-500">g</span> ───►│ Temp1 │</div>
+              <div><span className="text-purple-500">h</span> ───►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
+              <div><span className="text-red-500">k{ clock - 50 > 9 ? clock - 50 : '0' + (clock - 50).toString() }</span> ─►│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</div>
+              <div><span className="text-yellow-500">w{ clock - 50 > 9 ? clock - 50 : '0' + (clock - 50).toString() }</span> ─►└───────┘</div>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ─────► Updated e</div>
+              <div><span className="text-purple-500">d</span> ───►────┘</div>
+            </div>
+          </div>
+        }
+
+
+        { clock%113 === 0 &&
+          <div>
+            <p className="pb-2">2. Add the <i>working variables</i> to the current <i>hash value</i>:</p>
+            <div className="pb-2 w-32 mx-auto">
+              <p><span className="">h0</span> = h0 + <span className="text-fuchsia-500">a</span></p>
+              <p><span className="">h1</span> = h1 + <span className="text-lime-500">b</span></p>
+              <p><span className="">h2</span> = h2 + <span className="text-orange-500">c</span></p>
+              <p><span className="">h3</span> = h3 + <span className="">d</span></p>
+              <p><span className="">h4</span> = h4 + <span className="text-green-500">e</span></p>
+              <p><span className="">h5</span> = h5 + <span className="text-red-500">f</span></p>
+              <p><span className="">h6</span> = h6 + <span className="text-indigo-500">g</span></p>
+              <p><span className="">h7</span> = h7 + <span className="text-purple-500">h</span></p>
+            </div>
+          </div>
+        }
+
       </div>
       }
 
-      { clock === lastClock &&
+      { masterClock === lastClock &&
       <div>
         <p className="pb-2">1. <i>Update working variables</i> as:</p>
         <div className="pb-2 w-32 mx-auto">
@@ -175,6 +198,30 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
           <p><span className="">c</span> = <span className="text-lime-500">b</span></p>
           <p><span className="">b</span> = <span className="text-fuchsia-500">a</span></p>
           <p><span className="">a</span> = <span className="">Temp1 + Temp2</span></p>
+        </div>
+        <div className="pb-2">
+          <p className="pb-2">Where</p>
+          <p className="pb-2">Temp1 = <span className="text-purple-500">h</span> + Σ1 + Choice + <span className="text-red-500">k{ clock - 50}</span> + <span className="text-yellow-500">w{ clock - 50}</span></p>
+          <p className="pb-2">Temp2 = Σ0 + Majority</p>
+          <div className="pb-2">
+            <div className="flex">
+              <div className="mr-2">Σ1 =</div>
+              <div>(<span className="text-green-500">e</span> rightrotate  6) xor <br/>(<span className="text-green-500">e</span> rightrotate 11) xor <br/>(<span className="text-green-500">e</span> rightrotate  25)</div>
+            </div>
+          </div>
+          <p className="pb-4">Choice = (<span className="text-green-500">e</span> and  <span className="text-red-500">f</span>) xor ((not <span className="text-green-500">e</span>) and <span className="text-indigo-500">g</span>)</p>
+          <div className="pb-2">
+            <div className="flex">
+              <div className="mr-2">Σ0 =</div>
+              <div>(<span className="text-fuchsia-500">a</span> rightrotate  2) xor <br/>(<span className="text-fuchsia-500">a</span> rightrotate 13) xor <br/>(<span className="text-fuchsia-500">a</span> rightrotate  22)</div>
+            </div>
+          </div>
+          <div className="pb-2">
+            <div className="flex">
+              <div className="w-[110px]">Majority =</div>
+              <div>(<span className="text-fuchsia-500">a</span> and <span className="text-lime-500">b</span>) xor (<span className="text-fuchsia-500">a</span> and <span className="text-orange-500">c</span>) xor (<span className="text-lime-500">b</span> and <span className="text-orange-500">c</span>)</div>
+            </div>
+          </div>
         </div>
         <p className="pb-2">2. Add the <i>working variables</i> to the current <i>hash value</i>:</p>
         <div className="pb-2 w-32 mx-auto">

@@ -166,8 +166,8 @@ function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, 
           </div>
         </div>
       </div>
-      { execute &&
-        <div className="mt-4">
+      { execute && lastClock() === masterClock &&
+        <div className="mt-4 mb-8">
           <h2 className='font-bold my-1 text-indigo-200'>Sha256</h2>
           <div>{ result }</div>
         </div>

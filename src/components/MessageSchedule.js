@@ -1,6 +1,6 @@
-import { decimalToBinary } from '../classes/utils'
+import { decimalToBinary, ordinal } from '../classes/utils'
 
-function MessageSchedule({ data, base, labels = [], clock }) {
+function MessageSchedule({ data, base, labels = [], clock, currentChunk }) {
   let firstLoopStartsAtClock = 14;
   let secondLoopStartsAtClock = 50;
 
@@ -36,7 +36,7 @@ function MessageSchedule({ data, base, labels = [], clock }) {
 
   return (
     <div className={`duration-500 ${clock < 1 && 'opacity-25'}`}>
-      <h2 className="font-bold my-1 text-indigo-200">Message schedule</h2>
+      <h2 className="font-bold my-1 text-indigo-200">Message schedule <span className="font-medium text-gray-400">- { ordinal(currentChunk) } chunk</span></h2>
       { data.map((word, key) =>
         <div className={`flex ${ focusColor(key, clock) }`} key={key}>
           {Array.isArray(labels) ?

@@ -113,9 +113,10 @@ function App() {
   }
 
   function onClockFast() {
-    if(clock + 20 > lastClock()) return;
-    setClock(clock + 20);
-    let result = shaStepped(input, firstLoop(clock + 19), secondLoop(clock + 19), chunksLoop(clock));
+    if(clock + 10 > lastClock()) return;
+    setClock(clock + 10);
+
+    let result = shaStepped(input, firstLoop(clock + 9), secondLoop(clock + 9), chunksLoop(clock + 9));
 
     setWView(result.w);
     setResult(result.hash);
@@ -126,10 +127,10 @@ function App() {
   }
 
   function onClockBackFast() {
-    if(clock < 20) return;
+    if(clock < 10) return;
 
-    if(clock < lastClock()) setClock(clock - 20);
-    let result = shaStepped(input, firstLoop(clock - 21), secondLoop(clock - 21), chunksLoop(clock));
+    if(clock < lastClock()) setClock(clock - 10);
+    let result = shaStepped(input, firstLoop(clock - 11), secondLoop(clock - 11), chunksLoop(clock - 11 ));
 
     setWView(result.w);
     setResult(result.hash);
@@ -155,14 +156,14 @@ function App() {
   }
 
   function firstLoop(clock) {
-    let step = clock%115;
+    let step = clock%114; // 115
 
     if(step + 16 < 64) return 15 + step;
     return 63
   }
 
   function secondLoop(clock) {
-    let step = clock%115;
+    let step = clock%114; // 115
     if(step >= 49 && step < 113) return step - 49;
 
     if(step >= 113) return 63;
@@ -170,7 +171,9 @@ function App() {
   }
 
   function chunksLoop(clock) {
-    return Math.floor(clock/115) + 1;
+    if(clock < 114) return 1;
+
+    return Math.floor(clock/114) + 1; // 115
   }
 
   function onInputBaseChange(value) {
@@ -189,8 +192,11 @@ function App() {
   }
 
   function onClockFinish() {
-    setClock(lastClock());
-    let result = shaStepped(input, firstLoop(113), secondLoop(113), chunksLoop(clock));
+    let cyclesCount = paddedInput.length/512;
+
+    setClock(lastClockStateless(cyclesCount));
+
+    let result = shaStepped(input, 63, 63, cyclesCount);
 
     setWView(result.w);
     setResult(result.hash);
@@ -215,12 +221,18 @@ function App() {
   function lastClock() {
     if(chunksCount === 1) return 113;
 
-    return 114*chunksCount + chunksCount - 2; // Don't touch this f*** thing.
+    return 113 + 114*(chunksCount - 1); // Don't touch this f*** thing.
+  }
+
+  function lastClockStateless(chunks) {
+    if(chunks === 1) return 113;
+
+    return 113 + 114*(chunks - 1); // Don't touch this f*** thing.
   }
 
   function cycleClock() {
     if(chunksCount === 1) return clock%114;
-    return clock%115;
+    return clock%114; // 115
   }
 
   function shaStepped(message, firstLoop, secondLoop, chunksLoop) {
@@ -231,7 +243,7 @@ function App() {
     let lettersBefore = [];
     let input = padding(message, inputBase);
     let chunks = chunkString(input);
-console.log(clock, firstLoop, secondLoop, chunksLoop)
+
     setChunksCount(chunks.length);
 
     for(let n = 0; n < chunksLoop; n++) {
@@ -323,20 +335,19 @@ console.log(clock, firstLoop, secondLoop, chunksLoop)
           <Explainer clock={cycleClock()} masterClock={clock} input={input} inputBase={inputBase} chunksCount={chunksCount} lastClock={lastClock(clock)} />
         </div>
         <div className="col pr-">
-            <MessageSchedule data={wView} base={base} labels={'w'} clock={cycleClock()}/>
+            <MessageSchedule data={wView} base={base} labels={'w'} clock={cycleClock()} currentChunk={chunksLoop(clock)}/>
         </div>
         <div className="col pr-4">
           <div className="pr-4">
             <div>
+              <BeforeLetters letters={lettersBefore} base={base} clock={cycleClock()} labels={['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', ]} />
               <Hs hs={hsBefore} base={base} clock={cycleClock()} />
               <MessageScheduleCalculation letters={letters} clock={cycleClock()} wView={wView} base={base} k={k}/>
               <CompressionCalculation letters={lettersBefore} clock={cycleClock()} wView={wView} base={base} k={k} flash={flash} lastClock={lastClock} hsBefore={hsBefore} hs={hs} masterClock={clock} result={result} />
             </div>
-
           </div>
         </div>
         <div className="col">
-          <BeforeLetters letters={lettersBefore} base={base} clock={cycleClock()} labels={['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', ]} />
           <Constants k={k} clock={cycleClock()}/>
         </div>
       </div>

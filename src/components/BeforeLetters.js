@@ -24,7 +24,7 @@ function BeforeLetters({ letters, base, labels = [], clock }) {
   if(clock < 50) return '';
 
   return (
-    <div>
+    <div className="ml-8">
       <ReactTooltip />
       <h2 className="font-bold my-1 text-indigo-200">Working Variables</h2>
       <div className="flex">
