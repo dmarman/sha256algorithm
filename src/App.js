@@ -2,23 +2,29 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { padding, chunkString, rotateRight, stringToBinary, binaryToString } from './classes/utils'
 
-import MessageBlock from "./components/MessageBlock";
-import MessageSchedule from "./components/MessageSchedule";
-import { sha256 } from "./classes/sha"
-import Hs from "./components/Hs";
-import Constants from "./components/Constants";
+import MessageBlock from './components/MessageBlock';
+import MessageSchedule from './components/MessageSchedule';
+import { sha256 } from './classes/sha'
+import Hs from './components/Hs';
+import Constants from './components/Constants';
 
-import MessageScheduleCalculation from "./components/MessageScheduleCalculation";
-import CompressionCalculation from "./components/CompressionCalculation";
-import ButtonBack from "./components/ButtonBack";
-import ButtonBackFast from "./components/ButtonBackFast";
-import ButtonInit from "./components/ButtonBackInit";
-import ButtonClock from "./components/ButtonClock";
-import ButtonClockFast from "./components/ButtonClockFast";
-import ButtonClockFinish from "./components/ButtonClockFinish";
-import ButtonAutoClock from "./components/ButtonAutoClock";
-import BeforeLetters from "./components/BeforeLetters";
-import Explainer from "./components/Explainer";
+import MessageScheduleCalculation from './components/MessageScheduleCalculation';
+import CompressionCalculation from './components/CompressionCalculation';
+import ButtonBack from './components/ButtonBack';
+import ButtonBackFast from './components/ButtonBackFast';
+import ButtonInit from './components/ButtonBackInit';
+import ButtonClock from './components/ButtonClock';
+import ButtonClockFast from './components/ButtonClockFast';
+import ButtonClockFinish from './components/ButtonClockFinish';
+import ButtonAutoClock from './components/ButtonAutoClock';
+import BeforeLetters from './components/BeforeLetters';
+import Explainer from './components/Explainer';
+import ReactGA from 'react-ga4';
+
+let trackingId = 'G-VV5G126B1Q';
+if(window.location.host === 'localhost:3000') trackingId = 'G-TT309BT8YX';
+ReactGA.initialize(trackingId);
+ReactGA.send('pageview');
 
 function App() {
   const [result, setResult] = useState('');
@@ -69,6 +75,8 @@ function App() {
   function onAutoClock() {
     setAutoplay(!autoplay);
     onClock();
+
+    ReactGA.event('onAutoClock');
   }
 
   function onClock() {
@@ -92,6 +100,8 @@ function App() {
     setTimeout(() => {
       setFlash(false)
     }, 200)
+
+    ReactGA.event('onClock');
   }
 
   function onInputChange(value) {
@@ -110,6 +120,8 @@ function App() {
     setHsBefore(result.hsBefore);
     setLetters(result.letters);
     setLettersBefore(result.lettersBefore);
+
+    ReactGA.event('onInputChange');
   }
 
   function onClockFast() {
@@ -124,6 +136,8 @@ function App() {
     setLettersBefore(result.lettersBefore);
     setHs(result.hs);
     setHsBefore(result.hsBefore);
+
+    ReactGA.event('onClockFast');
   }
 
   function onClockBackFast() {
@@ -138,6 +152,8 @@ function App() {
     setLettersBefore(result.lettersBefore);
     setHs(result.hs);
     setHsBefore(result.hsBefore);
+
+    ReactGA.event('onClockBackFast');
   }
 
   function onClockBack() {
@@ -153,6 +169,8 @@ function App() {
     setLettersBefore(result.lettersBefore);
     setHs(result.hs);
     setHsBefore(result.hsBefore);
+
+    ReactGA.event('onClockBack');
   }
 
   function firstLoop(clock) {
@@ -189,6 +207,8 @@ function App() {
       if(binaryToString(input) === '\x00') setInput('')
       setInputPlaceholderInput('Input...');
     }
+
+    ReactGA.event('onInputBaseChange');
   }
 
   function onClockFinish() {
@@ -204,6 +224,8 @@ function App() {
     setLettersBefore(result.lettersBefore);
     setHs(result.hs);
     setHsBefore(result.hsBefore);
+
+    ReactGA.event('onClockFinish');
   }
 
   function onClockInit() {
@@ -216,6 +238,8 @@ function App() {
     setLettersBefore(result.lettersBefore);
     setHs(result.hs);
     setHsBefore(result.hsBefore);
+
+    ReactGA.event('onClockInit');
   }
 
   function lastClock() {
