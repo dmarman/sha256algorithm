@@ -11,7 +11,7 @@ function MessageScheduleCalculation({ letters, clock, wView, base, k }) {
     <div className={ `duration-500 ${ active(clock) }` }>
       {clock < 50 && clock >= 0 ?
         <div className="mt-5 flex">
-          <div className="mr-1">
+          <div className="mr-1 hidden sm:block">
             <br/><br/><br/><br/><br/>
             <div>&nbsp;&nbsp;┌─</div>
             <div>&nbsp;&nbsp;│</div>

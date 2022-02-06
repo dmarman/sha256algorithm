@@ -324,25 +324,21 @@ function App() {
   }
   return (
     <div className="App font-mono text-xs text-indigo-300 px-2 leading-3 bg-gray-900 h-screen transition">
-      <div className="flex w-full">
+      <div className="flex flex-col lg:flex-row w-full mb-2">
         <div className="w-full">
-          <div className="hidden">
-            <div>12037465</div>
-            <div>665782</div>
-          </div>
           <div className="flex">
-            <select value={inputBase} onChange={e => onInputBaseChange(e.target.value)} className="bg-gray-700 my-2 py-2 px-3 rounded mr-2 cursor-pointer hover:bg-gray-600 transition">
+            <select value={inputBase} onChange={e => onInputBaseChange(e.target.value)} className="bg-gray-700 mt-2 py-2 px-3 rounded mr-2 cursor-pointer hover:bg-gray-600 transition">
               <option value="text">Text</option>
               <option value="bin">Bin</option>
             </select>
-            <input type="text" className="bg-gray-700 my-2 w-full py-2 px-3 mr-2 rounded" value={input} onChange={e => onInputChange(e.target.value)} placeholder={inputPlaceholder}/>
+            <input type="text" className="bg-gray-700 mt-2 w-full py-2 px-3 mr-2 rounded" value={input} onChange={e => onInputChange(e.target.value)} placeholder={inputPlaceholder}/>
             <select value={base} onChange={e => setBase(e.target.value)} className="bg-gray-700 my-2 py-2 px-3 rounded mr-2 cursor-pointer hover:bg-gray-600 transition hidden">
               <option value="hex">Hex</option>
               <option value="bin">Bin</option>
             </select>
           </div>
         </div>
-        <div className="w-full mt-2">
+        <div className="w-full mt-2 items-center flex">
           <ButtonInit onClockInit={onClockInit} clock={clock} />
           <ButtonBackFast onClockBackFast={onClockBackFast} clock={clock} />
           <ButtonBack onClockBack={onClockBack} clock={clock} />
@@ -350,10 +346,26 @@ function App() {
           <ButtonAutoClock onAutoClock={onAutoClock} clock={clock} lastClock={lastClock} autoplay={autoplay} />
           <ButtonClockFast onClockFast={onClockFast} clock={clock} lastClock={lastClock} />
           <ButtonClockFinish onClockFinish={onClockFinish} clock={clock} lastClock={lastClock} />
+          <div className="ml-2 hidden sm:block">
+            <div className="flex items-center">
+              <div className="">Created by <a href="https://twitter.com/manceraio" target='_blank' className="text-indigo-200 hover:underline">@manceraio</a> /</div>
+              <a href="https://github.com/dmarman/sha256algorithm" target="_blank" className="ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-brand-github" width="16"
+                     height="16" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path
+                    d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/>
+                </svg>
+              </a>
+
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="flex">
+      <div className="flex flex-col sm:flex-row">
+        <div className="px-3 py-2 bg-yellow-800 text-yellow-200 border border-yellow-200 rounded text-center m-4 text-sm leading-4 sm:hidden">Please visit this website on desktop :)</div>
         <div className="col pr-1 w-[290px]">
           <MessageBlock data={paddedInput} base={base} clock={cycleClock()} chunksLoop={chunksLoop(clock)}/>
           <Explainer clock={cycleClock()} masterClock={clock} input={input} inputBase={inputBase} chunksCount={chunksCount} lastClock={lastClock(clock)} />
