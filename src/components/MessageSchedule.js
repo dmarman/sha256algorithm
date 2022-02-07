@@ -35,7 +35,7 @@ function MessageSchedule({ data, base, labels = [], clock, currentChunk }) {
   }
 
   return (
-    <div className={`duration-500 ${clock < 1 && 'opacity-25'}`}>
+    <div className={`duration-500 ${clock < 1 && 'opacity-25'} mt-2 sm:mt-0`}>
       <h2 className="font-bold my-1 text-indigo-200">Message schedule <span className="font-medium text-gray-400">- { ordinal(currentChunk) } chunk</span></h2>
       { data.map((word, key) =>
         <div className={`flex ${ focusColor(key, clock) }`} key={key}>

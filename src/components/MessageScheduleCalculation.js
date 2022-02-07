@@ -8,7 +8,7 @@ function MessageScheduleCalculation({ letters, clock, wView, base, k }) {
   }
 
   return (
-    <div className={ `duration-500 ${ active(clock) }` }>
+    <div className={ `duration-500 ${ active(clock) } mb-8` }>
       {clock < 50 && clock >= 0 ?
         <div className="mt-5 flex">
           <div className="mr-1 hidden sm:block">
