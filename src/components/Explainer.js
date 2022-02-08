@@ -130,7 +130,7 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
         <div className="pb-2">
           <div className="flex">
             <div className="mr-2">σ1 =</div>
-            <div>(<b className="text-green-500">w{ clock + 12 }</b> rightrotate  7) xor <br/>(<b className="text-green-500">w{ clock + 12 }</b> rightrotate 18) xor <br/>(<b className="text-green-500">w{ clock + 12 }</b> rightshift  3)</div>
+            <div>(<b className="text-green-500">w{ clock + 12 }</b> rightrotate  17) xor <br/>(<b className="text-green-500">w{ clock + 12 }</b> rightrotate 19) xor <br/>(<b className="text-green-500">w{ clock + 12 }</b> rightshift 10)</div>
           </div>
         </div>
       </div>
