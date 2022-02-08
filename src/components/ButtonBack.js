@@ -3,9 +3,11 @@ function ButtonBack({ clock, onClockBack }) {
   if(clock === 0) bg = 'opacity-25 cursor-default';
 
   return (
-    <button onClick={onClockBack} className={`px-3 py-2 rounded ${bg} bg-gray-700 mx-1 transition`} title="One step back">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13.3333 13.3333V2.66668L4.66666 8.00001L13.3333 13.3333Z" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+    <button onClick={onClockBack} className={`px-3 py-2 rounded ${bg} bg-gray-700 mx-1 transition`} title="Go back 1 step">
+      <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 13.3333L10 2.66666L1.33333 7.99999L10 13.3333Z" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M13 13.33L13 2.66" stroke="white" strokeWidth="1.33" strokeLinecap="round"/>
+        <path d="M16 13.33V2.66" stroke="white" strokeWidth="1.33" strokeLinecap="round"/>
       </svg>
     </button>
   );
