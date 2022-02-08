@@ -1,6 +1,15 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { padding, chunkString, rotateRight, stringToBinary, binaryToString } from './classes/utils'
+import {
+  padding,
+  chunkString,
+  rotateRight,
+  stringToBinary,
+  binaryToString,
+  binaryToHex,
+  stringToHex,
+  hexToString, hexToBinary
+} from './classes/utils'
 
 import MessageBlock from './components/MessageBlock';
 import MessageSchedule from './components/MessageSchedule';
@@ -106,6 +115,7 @@ function App() {
 
   function onInputChange(value) {
     if(inputBase ===  'bin' && !['0', '1', ''].includes(value.substr(-1))) return;
+    if(inputBase ===  'hex' && !['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ''].includes(value.substr(-1))) return;
     if(clock > lastClock()) setClock(lastClock());
 
     setInput(value);
@@ -198,14 +208,27 @@ function App() {
     setInputBase(value);
 
     if(value === 'bin') {
-      setInput(stringToBinary(input));
+      if(inputBase === 'text') setInput(stringToBinary(input));
+      if(inputBase === 'hex') setInput(hexToBinary(input));
       setInputPlaceholderInput('10101...');
     }
 
     if(value === 'text') {
-      setInput(binaryToString(input));
-      if(binaryToString(input) === '\x00') setInput('')
+      if(inputBase === 'bin') {
+        setInput(binaryToString(input));
+        if(binaryToString(input) === '\x00') setInput('');
+      };
+
+      if(inputBase === 'hex') {setInput(hexToString(input));}
+
       setInputPlaceholderInput('Input...');
+    }
+
+    if(value === 'hex') {
+      if(inputBase === 'bin') setInput(binaryToHex(input));
+      if(inputBase === 'text') setInput(stringToHex(input));
+
+      setInputPlaceholderInput('a1b5c8');
     }
 
     ReactGA.event('onInputBaseChange');
@@ -330,6 +353,7 @@ function App() {
             <select value={inputBase} onChange={e => onInputBaseChange(e.target.value)} className="bg-gray-700 mt-2 py-2 px-3 rounded mr-2 cursor-pointer hover:bg-gray-600 transition">
               <option value="text">Text</option>
               <option value="bin">Bin</option>
+              <option value="hex">Hex</option>
             </select>
             <input type="text" className="bg-gray-700 mt-2 w-full py-2 px-3 mr-2 rounded" value={input} onChange={e => onInputChange(e.target.value)} placeholder={inputPlaceholder}/>
             <select value={base} onChange={e => setBase(e.target.value)} className="bg-gray-700 my-2 py-2 px-3 rounded mr-2 cursor-pointer hover:bg-gray-600 transition hidden">
@@ -351,8 +375,8 @@ function App() {
               <div className="">Created by <a href="https://twitter.com/manceraio" target='_blank' className="text-indigo-200 hover:underline">@manceraio</a> /</div>
               <a href="https://github.com/dmarman/sha256algorithm" target="_blank" className="ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-brand-github" width="16"
-                     height="16" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none"
-                     stroke-linecap="round" stroke-linejoin="round">
+                     height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="#ffffff" fill="none"
+                     strokeLinecap="round" strokeLinejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                   <path
                     d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/>

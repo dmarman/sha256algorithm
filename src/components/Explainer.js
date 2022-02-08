@@ -1,5 +1,4 @@
 import { paddingExplained, ordinal } from '../classes/utils';
-import ButtonAutoClock from "./ButtonAutoClock";
 
 function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterClock }) {
   let messageBlock = paddingExplained(input, inputBase);

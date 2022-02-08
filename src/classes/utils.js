@@ -10,6 +10,37 @@ export function stringToBinary(string) {
   return result.join('')
 }
 
+export function hexToBinary(hex) {
+  let decimal = chunkString(hex, 2).map(value => parseInt(value, 16));
+
+  return decimal.map(value => decimalToBinary(value).padStart(8, '0')).join('');
+}
+
+export function hexToString(hex) {
+  let decimal = chunkString(hex, 2).map(value => parseInt(value, 16));
+
+  let valueArray = new Uint8Array(decimal);
+  const decoder = new TextDecoder('utf-8');
+
+  return decoder.decode(valueArray)
+}
+
+export function stringToHex(string) {
+  const encoder = new TextEncoder();
+  const byteArray = encoder.encode(string);
+  let result = [];
+
+  byteArray.forEach((value) => {
+    result.push(value.toString(16));
+  });
+
+  return result.join('')
+}
+
+export function binaryToHex(binary) {
+  return parseInt(binary, 2).toString(16);
+}
+
 export function binaryToString(binary) {
   let decimal = chunkString(binary, 8).map(value => binaryToDecimal(value));
   let valueArray = new Uint8Array(decimal);
@@ -48,9 +79,10 @@ export function return64Bit(number) {
 
 export function padding(input, base = 'text') {
   if(base === 'text') input = stringToBinary(input);
+  if(base === 'hex') input = hexToBinary(input);
   let L = input.length;
   let K = calculateK(L);
-  let L64 = return64Bit(decimalToBinary(L))
+  let L64 = return64Bit(decimalToBinary(L));
 
   return appendOneBit(input) + L64.padStart(K + 64, '0')
 }
