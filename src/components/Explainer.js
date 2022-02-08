@@ -20,9 +20,10 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
             <div className="flex ml-1 mt-2 items-center">
               <div className="mr-2">
                 <div className="border opacity-50 rounded px-2 py-1">
-                  <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 2.66667V13.3333L9.66667 8.00001L1 2.66667Z" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="15" cy="8" r="2.335" stroke="white" strokeWidth="1.33"/>
+                  <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 2.66667V13.3333L16.6667 8.00001L8 2.66667Z" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M5 2.67V13.34" stroke="white" strokeWidth="1.33" strokeLinecap="round"/>
+                    <path d="M2 2.67V13.34" stroke="white" strokeWidth="1.33" strokeLinecap="round"/>
                   </svg>
                 </div>
               </div>
@@ -32,8 +33,10 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
             <div className="flex ml-1 mt-2 items-center">
               <div className="mr-2">
                 <div className="border opacity-50 rounded px-2 py-1">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.3333 13.3333V2.66668L4.66666 8.00001L13.3333 13.3333Z" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+                  <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 13.3333L10 2.66666L1.33333 7.99999L10 13.3333Z" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M13 13.33L13 2.66" stroke="white" strokeWidth="1.33" strokeLinecap="round"/>
+                    <path d="M16 13.33V2.66" stroke="white" strokeWidth="1.33" strokeLinecap="round"/>
                   </svg>
                 </div>
               </div>
@@ -43,9 +46,11 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
             <div className="flex ml-1 mt-2 items-center">
               <div className="mr-2">
                 <div className="border opacity-50 rounded px-2 py-1">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 2.66667V13.3333L14.6667 8.00001L6 2.66667Z" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M2 2.67V13.34" stroke="white" strokeWidth="1.33" strokeLinecap="round"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-play" width="16"
+                       height="16" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round"
+                       strokeLinejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M7 4v16l13 -8z"/>
                   </svg>
                 </div>
               </div>
@@ -55,21 +60,21 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
             <div className="flex ml-1 mt-2 items-center">
               <div className="mr-2 flex">
                 <div className="border opacity-50 rounded px-2 py-1 mr-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-skip-back" width="16"
-                       height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="#ffffff" fill="none" strokeLinecap="round"
-                       strokeLinejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M20 5v14l-12 -7z"/>
-                    <line x1="4" y1="5" x2="4" y2="19"/>
-                  </svg>
-                </div>
-                <div className="border opacity-50 rounded px-2 py-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-skip-forward"
+                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-track-prev"
                        width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="#ffffff" fill="none"
                        strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M4 5v14l12 -7z"/>
-                    <line x1="20" y1="5" x2="20" y2="19"/>
+                    <path d="M21 5v14l-8 -7z"/>
+                    <path d="M10 5v14l-8 -7z"/>
+                  </svg>
+                </div>
+                <div className="border opacity-50 rounded px-2 py-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-track-next"
+                       width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="#ffffff" fill="none"
+                       strokeLinecap="round" strokeLinejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M3 5v14l8 -7z"/>
+                    <path d="M14 5v14l8 -7z"/>
                   </svg>
                 </div>
               </div>
@@ -80,21 +85,21 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
               <div className="mr-2">
                 <div className="flex">
                   <div className="border opacity-50 rounded px-2 py-1 mr-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-track-prev"
-                         width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="#ffffff" fill="none"
-                         strokeLinecap="round" strokeLinejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-skip-back" width="16"
+                         height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="#ffffff" fill="none" strokeLinecap="round"
+                         strokeLinejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                      <path d="M21 5v14l-8 -7z"/>
-                      <path d="M10 5v14l-8 -7z"/>
+                      <path d="M20 5v14l-12 -7z"/>
+                      <line x1="4" y1="5" x2="4" y2="19"/>
                     </svg>
                   </div>
                   <div className="border opacity-50 rounded px-2 py-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-track-next"
+                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-player-skip-forward"
                          width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="#ffffff" fill="none"
                          strokeLinecap="round" strokeLinejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                      <path d="M3 5v14l8 -7z"/>
-                      <path d="M14 5v14l8 -7z"/>
+                      <path d="M4 5v14l12 -7z"/>
+                      <line x1="20" y1="5" x2="20" y2="19"/>
                     </svg>
                   </div>
                 </div>
