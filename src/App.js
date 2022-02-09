@@ -302,7 +302,8 @@ function App() {
         w[i] = parseInt(messageWord, 2)
       });
 
-      for(let i = 16; i <= firstLoop; i++) { //63
+      let firstLoopForCurrentChunk = n < chunksLoop - 1 ? 63 : firstLoop;
+      for(let i = 16; i <= firstLoopForCurrentChunk; i++) { //63
         s0 = (rotateRight(w[i-15], 7) ^ rotateRight(w[i-15], 18) ^ (w[i-15] >>> 3)) >>> 0;
         s1 = (rotateRight(w[i-2], 17) ^ rotateRight(w[i-2], 19) ^ (w[i-2] >>> 10)) >>> 0;
         w[i] = (w[i-16] + s0 + w[i-7] + s1)%(2**32)
@@ -310,7 +311,8 @@ function App() {
 
       a = h0; b = h1; c = h2; d = h3; e = h4; f = h5; g = h6; h = h7;
 
-      for(let i = 0; i <= secondLoop; i++) { // 63
+      let secondLoopForCurrentChunk = n < chunksLoop - 1 ? 63 : secondLoop;
+      for(let i = 0; i <= secondLoopForCurrentChunk; i++) { // 63
         S1 = (rotateRight(e, 6) ^ rotateRight(e, 11) ^ rotateRight(e, 25)) >>> 0;
         ch = (e & f) ^ ((~e) & g) >>> 0;
         temp1 = (h + S1 + ch + k[i] + w[i])%(2**32) >>> 0;
