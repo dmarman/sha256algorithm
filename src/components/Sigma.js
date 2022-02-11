@@ -26,13 +26,13 @@ function Sigma({ w, base, clock, clockShift, rotations, shift, sigmaIndex, color
             <div className={`mb-1 border-b text-${color}-500`}>
               { decimalToBinary(input).padStart(32, '0') }
             </div>
-            <div style={{background: `repeating-linear-gradient(to right, #ffffff00 0 ${rotations[0]}ch, ${backgroundColor} ${rotations[0]}ch 32ch)`}}>
+            <div style={{background: `linear-gradient(to right, #ffffff00 0 ${rotations[0]}ch, ${backgroundColor} ${rotations[0]}ch 32ch, #ffffff00 32ch)`}}>
               { decimalToBinary(rotate1).padStart(32, '0') }
             </div>
-            <div style={{background: `repeating-linear-gradient(to right, #ffffff00 0 ${rotations[1]}ch, ${backgroundColor} ${rotations[1]}ch 32ch)`}}>
+            <div style={{background: `linear-gradient(to right, #ffffff00 0 ${rotations[1]}ch, ${backgroundColor} ${rotations[1]}ch 32ch, #ffffff00 32ch)`}}>
               { decimalToBinary(rotate2).padStart(32, '0') } XOR
             </div>
-            <div style={{background: `repeating-linear-gradient(to right, #ffffff00 0 ${shift}ch, ${backgroundColor} ${shift}ch 32ch)`}} className="border-b">
+            <div style={{background: `linear-gradient(to right, #ffffff00 0 ${shift}ch, ${backgroundColor} ${shift}ch 32ch, #ffffff00 32ch)`}} className="border-b">
               { decimalToBinary(shiftOp).padStart(32, '0') } XOR
             </div>
             <div className="mt-1">
