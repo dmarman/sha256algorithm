@@ -25,13 +25,13 @@ function SigmaUpper({ letterValue, letter, base, clock, clockShift, rotations, s
             <div className={`mb-1 border-b text-${color}-500`}>
               { decimalToBinary(input).padStart(32, '0') }
             </div>
-            <div style={{background: `repeating-linear-gradient(to right, #ffffff00 0 ${rotations[0]}ch, ${backgroundColor} ${rotations[0]}ch 32ch)`}}>
+            <div style={{background: `linear-gradient(to right, #ffffff00 0 ${rotations[0]}ch, ${backgroundColor} ${rotations[0]}ch 32ch, #ffffff00 32ch)`}}>
               { decimalToBinary(rotate1).padStart(32, '0') }
             </div>
-            <div style={{background: `repeating-linear-gradient(to right, #ffffff00 0 ${rotations[1]}ch, ${backgroundColor} ${rotations[1]}ch 32ch)`}}>
+            <div style={{background: `linear-gradient(to right, #ffffff00 0 ${rotations[1]}ch, ${backgroundColor} ${rotations[1]}ch 32ch, #ffffff00 32ch)`}}>
               { decimalToBinary(rotate2).padStart(32, '0') } XOR
             </div>
-            <div style={{background: `repeating-linear-gradient(to right, #ffffff00 0 ${rotations[2]}ch, ${backgroundColor} ${rotations[2]}ch 32ch)`}} className="border-b">
+            <div style={{background: `linear-gradient(to right, #ffffff00 0 ${rotations[2]}ch, ${backgroundColor} ${rotations[2]}ch 32ch, #ffffff00 32ch)`}} className="border-b">
               { decimalToBinary(rotate3).padStart(32, '0') } XOR
             </div>
             <div className="mt-1">
