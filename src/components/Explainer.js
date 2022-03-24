@@ -113,7 +113,7 @@ function Explainer({ clock, input, inputBase, chunksCount, lastClock, masterCloc
         <div>
           <p className="pb-2">1. Break the <i>message block</i> into 512-bit chunks. In our case { chunksCount } chunk{ chunksCount > 1 && 's' }.</p>
           <p className="pb-2">2. Create a 64-entry <i>message schedule</i> array <b className="text-green-500">w[0..63]</b> of 32-bit words.</p>
-          <p className="pb-2">3. Copy { ordinal(chunksCount) } chunk into 1st 16 words <b className="text-green-500">w[0..15]</b> of the <i>message schedule</i> array.</p>
+          <p className="pb-2">3. Copy { ordinal(Math.ceil(masterClock / 113)) } chunk into 1st 16 words <b className="text-green-500">w[0..15]</b> of the <i>message schedule</i> array.</p>
         </div>
       }
       { (clock >= 2 && clock <= 49) &&
