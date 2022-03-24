@@ -59,7 +59,9 @@ function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, 
         </div>
       </div>
 
-      <h2 className="font-bold my-1 text-indigo-200">Update working variables</h2>
+      <h2 className="font-bold my-1 text-indigo-200">
+        { execute && <div>Update hash values</div> || <div>Update working variables</div> }
+      </h2>
       <div className="flex">
         <div className="flex">
           <div className="mr-3 w-8">
