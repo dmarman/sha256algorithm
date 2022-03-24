@@ -53,7 +53,8 @@ function CompressionCalculation({ letters, clock, wView, base, k, lastClock, hsB
             <div>│ └─</div>
             <div>│</div>
             <div>│</div>
-            { execute && <div><div>│</div><div>│</div><div>│</div><div>│</div><div>│</div><div>│</div><div className="mt-[3px]">│</div></div> }
+            <div>│</div>
+            { execute && <div><div>│</div><div>│</div><div>│</div><div>│</div><div>│</div><div>│</div><div>│</div><div>│</div><div>│</div><div className="mt-[3px]">│</div></div> }
             <div>└───</div>
           </div>
           <div>
