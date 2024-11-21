@@ -99,7 +99,7 @@ function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, 
               </div>
             }
 
-            <div className="text-lime-500">{ decimalToBinary(b).padStart(32, '0') }</div>
+            <div data-tip={displayHex(b)} className="text-lime-500">{ decimalToBinary(b).padStart(32, '0') }</div>
             { execute &&
               <div>
                 <div className="border-b">{ decimalToBinary(hsBefore[2]).padStart(32, '0') }</div>
@@ -107,7 +107,7 @@ function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, 
               </div>
             }
 
-            <div className="text-orange-500">{ decimalToBinary(c).padStart(32, '0') }</div>
+            <div data-tip={displayHex(c)} className="text-orange-500">{ decimalToBinary(c).padStart(32, '0') }</div>
             { execute &&
               <div>
                 <div className="border-b">{ decimalToBinary(hsBefore[3]).padStart(32, '0') }</div>
@@ -115,7 +115,7 @@ function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, 
               </div>
             }
 
-            <div>{ decimalToBinary(((d + temp1) >>> 0)%(2**32)).padStart(32, '0') }</div>
+            <div data-tip={displayHex(((d + temp1) >>> 0)%(2**32))}>{ decimalToBinary(((d + temp1) >>> 0)%(2**32)).padStart(32, '0') }</div>
             { execute &&
               <div>
                 <div className="border-b">{ decimalToBinary(hsBefore[4]).padStart(32, '0') }</div>
@@ -123,7 +123,7 @@ function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, 
               </div>
             }
 
-            <div className="text-green-500">{ decimalToBinary(e).padStart(32, '0') }</div>
+            <div data-tip={displayHex(e)} className="text-green-500">{ decimalToBinary(e).padStart(32, '0') }</div>
             { execute &&
               <div>
                 <div className="border-b">{ decimalToBinary(hsBefore[5]).padStart(32, '0') }</div>
@@ -131,7 +131,7 @@ function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, 
               </div>
             }
 
-            <div className="text-red-500">{ decimalToBinary(f).padStart(32, '0') }</div>
+            <div data-tip={displayHex(f)} className="text-red-500">{ decimalToBinary(f).padStart(32, '0') }</div>
             { execute &&
               <div>
                 <div className="border-b">{ decimalToBinary(hsBefore[6]).padStart(32, '0') }</div>
@@ -139,7 +139,7 @@ function UpdateLetters({ w, letters, base, clock, k, hsBefore, hs, masterClock, 
               </div>
             }
 
-            <div className="text-indigo-500">{ decimalToBinary(g).padStart(32, '0') }</div>
+            <div data-tip={displayHex(g)} className="text-indigo-500">{ decimalToBinary(g).padStart(32, '0') }</div>
             { execute &&
               <div>
                 <div className="border-b">{ decimalToBinary(hsBefore[7]).padStart(32, '0') }</div>
